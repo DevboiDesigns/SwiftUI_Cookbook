@@ -18,8 +18,7 @@ func reverseIt(mylist: [String]) -> some Collection {
 }
 ```
 
-## View
-### `View`
+## View `View`
 
 extends view to edges of screen 
 ```swift
@@ -37,8 +36,7 @@ padding
 ```
 
 
-## Text
-### `Text`
+## Text `Text`
 
 * `Text(string: )`
 * `Text(Date, style: DateStyle)` - present a date. Style argument is a struct that determines the format. Type properties include `date`, `offset`, `relative`, `time`, and `timer` to define this value.
@@ -92,8 +90,7 @@ Text(today, style: .timer)
 ```
 
 
-## Color 
-### `Color`
+## Color  `Color`
 
 * `RGBColorSpace` = .sRGB, .sRGBLinear, .displayP3
 * `Color(Color.RGBColorSpace, red: Double, green: Double, blue: Double, opacity: Double)` 
