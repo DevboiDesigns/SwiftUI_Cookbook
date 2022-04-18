@@ -91,3 +91,24 @@ Text(today, style: .timer)
 
 
 ## Color 
+
+* `RGBColorSpace` = .sRGB, .sRGBLinear, .displayP3
+* `Color(Color.RGBColorSpace, red: Double, green: Double, blue: Double, opacity: Double)` 
+* `Color(Color.RGBColorSpace, white: Double, opacity: Double)`
+* `Color(hue: Double, saturation: Double, brightness: Double)` 
+* `Color(Color.accentColor)` = dynamic light dark, can be predefined 
+* `Color(Color.primary)` = dynamic light dark, can be predefined 
+* `Color(Color.secondary)` = dynamic light dark, can be predefined 
+
+
+*view previews with dark mode*
+
+```swift
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView().preferredColorScheme(.dark)
+    }
+}
+```
+
+set AccentColor for global use in [Assets.xcassets](SwiftUI_Cookbook/SwiftUI_Cookbook/Assets.xcassets) 

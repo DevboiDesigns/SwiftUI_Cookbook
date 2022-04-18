@@ -13,8 +13,7 @@ struct ContentView: View {
     let today: Date = Date() + 100
     
     var body: some View {
-        Text("Hello World")
-            .textSelection(TextSelectability)
+        Color(Color.secondary)
            
         
     }
@@ -22,6 +21,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView().preferredColorScheme(.dark)
     }
 }
