@@ -15,7 +15,8 @@ struct ContentView: View {
     var body: some View {
        
        Text("Hello World")
-            .background(alignment: Alignment, content: <#T##() -> View#>)
+            .background(.red)
+            .foregroundStyle(.thickMaterial)
         
     }
 }

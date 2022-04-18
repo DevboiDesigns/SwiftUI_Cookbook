@@ -18,6 +18,11 @@ func reverseIt(mylist: [String]) -> some Collection {
 }
 ```
 
+## App icon 
+
+* set [here](SwiftUI_Cookbook/SwiftUI_Cookbook/Assets.xcassets/AppIcon.appiconset) 
+* [App icon Generator](https://appicon.co/#app-icon)
+
 ## View 
 
 `View`
@@ -37,6 +42,18 @@ edge insets
 padding
 ```swift
 .padding([.top, .bottom], 50)
+```
+
+*`Materials` apply a blur effect to the background of a view*
+
+```swift
+Text("Hello World")
+    .background(.red)
+    .foregroundStyle(.thickMaterial)
+```
+```swift
+.background(.thickMaterial)
+.foregroundStyle(.thickMaterial)
 ```
 
 
@@ -135,4 +152,12 @@ struct ContentView_Previews: PreviewProvider {
 ```swift
 .overlay(alignment: Alignment, content: <() -> View>)
 ```
+
+## Images 
+
+`Image`
+
+*all imported images need 3 sizes* [Image sets Generator](https://appicon.co/#image-sets)
+
+### Initializers
 
