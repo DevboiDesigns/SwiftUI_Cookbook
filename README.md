@@ -2,6 +2,7 @@
 * complete overview of the `SwiftUI` framework
 * Xcode vers: `13`
 * Swift vers: `5`
+* *work in progress*
  
 ## WindowGroup(content: Closure)
 This initializer creates a scene to manage all the windows of an instance of the application. The content argument is a closure with the code that defines what the windows are going to display. If only returning one view, do not need return.
@@ -807,7 +808,7 @@ struct ContentView: View {
 * `State(initialValue: Value)`
 * `State(wrappedValue: Value)`
 
-initialize @State properties
+* Custom `@State` initializer
 
 *only recommended when there are no other options, if possible use `onAppear()` or by storing in an observable object*
 
@@ -833,6 +834,44 @@ struct ContentView: View {
             } label: { Text("Change title") }
             Spacer()
         }.padding()
+    }
+}
+```
+
+* Custom `@Binding` initializer 
+
+```swift
+struct HeaderView: View {
+    
+    @Binding var title: String
+    let counter: Int
+    
+    init(title: Binding<String>) {
+        _title = title
+        
+        let sentence = title.wrappedValue
+        counter = sentence.count
+    }
+    
+    var body: some View {
+        Text("\(title) (\(counter))")
+            .padding(10)
+    }
+}
+```
+
+**Binding in Previews**
+
+```swift
+struct HeaderView_Previews: PreviewProvider {
+    static var previews: some View {
+        let constantValue = Binding<String>(
+            get: { return "My preview title"},
+            set: { value in
+                print(value)
+            }
+        )
+        return HeaderView(title: constantValue)
     }
 }
 ```

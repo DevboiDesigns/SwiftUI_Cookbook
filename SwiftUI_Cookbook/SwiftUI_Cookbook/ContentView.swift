@@ -11,9 +11,17 @@ import SwiftUI
 struct HeaderView: View {
     
     @Binding var title: String
+    let counter: Int
+    
+    init(title: Binding<String>) {
+        _title = title
+        
+        let sentence = title.wrappedValue
+        counter = sentence.count
+    }
     
     var body: some View {
-        Text(title)
+        Text("\(title) (\(counter))")
             .padding(10)
     }
 }
@@ -54,7 +62,13 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        let constantValue = Binding<String>(
+            get: { return "My preview title"},
+            set: { value in
+                print(value)
+            }
+        )
+        return HeaderView(title: constantValue)
     }
 }
 
