@@ -11,6 +11,7 @@
 		0C30892A280DB83400F99A02 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C308929280DB83400F99A02 /* ContentView.swift */; };
 		0C30892C280DB83600F99A02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C30892B280DB83600F99A02 /* Assets.xcassets */; };
 		0C30892F280DB83600F99A02 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C30892E280DB83600F99A02 /* Preview Assets.xcassets */; };
+		0C308936280E0EEC00F99A02 /* ApplicationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C308935280E0EEC00F99A02 /* ApplicationData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		0C308929280DB83400F99A02 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0C30892B280DB83600F99A02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C30892E280DB83600F99A02 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		0C308935280E0EEC00F99A02 /* ApplicationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			children = (
 				0C308927280DB83400F99A02 /* SwiftUI_CookbookApp.swift */,
 				0C308929280DB83400F99A02 /* ContentView.swift */,
+				0C308935280E0EEC00F99A02 /* ApplicationData.swift */,
 				0C30892B280DB83600F99A02 /* Assets.xcassets */,
 				0C30892D280DB83600F99A02 /* Preview Content */,
 			);
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C308936280E0EEC00F99A02 /* ApplicationData.swift in Sources */,
 				0C30892A280DB83400F99A02 /* ContentView.swift in Sources */,
 				0C308928280DB83400F99A02 /* SwiftUI_CookbookApp.swift in Sources */,
 			);

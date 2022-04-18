@@ -879,7 +879,7 @@ struct HeaderView_Previews: PreviewProvider {
 
 ## @Enviornment
 
-* [Enviorment Properties](#Enviorment)
+* [Enviorment Properties](#Enviorment) - available properties 
 
 ```swift
 struct ContentView: View {
@@ -891,6 +891,148 @@ struct ContentView: View {
             .font(Font.system(size: 100))
             .foregroundColor(mode == .dark ? Color.yellow : Color.blue)
             .symbolVariant(mode == .dark ? .fill : .circle)
+    }
+}
+```
+
+## Model and State 
+
+### ObservableObject
+Define a class that conforms to `ObservableObject` protocol
+
+### @Published
+Define the properties we want to use to store the states with `@Published` property wrapper 
+* `ObservableObject` level 
+
+```swift
+final class ApplicationData: ObservableObject {
+    @Published var title: String = "Default Title"
+    @Published var titleInput: String = ""
+}
+```
+
+### @StateObject
+Store an instance of this model with the `@StateObject` property wrapper 
+* `App` level 
+
+```swift
+@main
+struct SwiftUI_CookbookApp: App {
+    
+    @StateObject private var appData = ApplicationData()
+    
+    var body: some Scene {
+        WindowGroup {
+            ContentView(appData: appData)
+        }
+    }
+}
+```
+
+### @ObservedObject
+Then include a property with the `@ObservedObject` property wrapper inside every view we want to connect this model
+* `View` level 
+
+```swift
+struct ContentView: View {
+    
+    @ObservedObject var appData: ApplicationData
+
+    @Environment(\.colorScheme) var mode
+    
+    var body: some View {
+       Text(appData.title)
+    }
+}
+
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView(appData: ApplicationData())
+    }
+}
+```
+
+**not ideal to store private state of a view in an apps model**
+*scalable solution*
+
+
+```swift
+
+final class ApplicationData: ObservableObject {
+    @Published var title: String = "Default Title"
+}
+
+final class ContentViewData: ObservableObject {
+    @Published var titleInput: String = ""
+}
+
+struct ContentView: View {
+    @ObservedObject var contentData = ContentViewData()
+    @ObservedObject var appData: ApplicationData
+    
+    /*     same as onAppear
+    init(appData: ApplicationData) {
+        self.appData = appData
+        contentData.titleInput = self.appData.title
+    }
+     */
+    
+    var body: some View {
+        VStack(spacing: 8) {
+            Text(appData.title)
+                .padding(10)
+            TextField("Insert title", text: $contentData.titleInput)
+                .textFieldStyle(.roundedBorder)
+            Button {
+                appData.title = contentData.titleInput
+            } label: { Text("Save") }
+            Spacer()
+        }
+        .padding()
+        .onAppear {
+            contentData.titleInput = appData.title
+        }
+    }
+}
+```
+
+## @EnviornmentObject
+
+* Top Level 
+
+```swift
+@main
+struct SwiftUI_CookbookApp: App {
+    
+    @StateObject private var appData = ApplicationData()
+    
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+                .environmentObject(appData)
+        }
+    }
+}
+```
+
+* View Level
+
+```swift
+struct ContentView: View {
+    
+    @EnvironmentObject var appData: ApplicationData
+    
+    var body: some View {
+        Text(appData.title)
+    }
+}
+
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+            .environmentObject(ApplicationData())
     }
 }
 ```
