@@ -7,29 +7,35 @@
 
 import SwiftUI
 
-struct MyModifiers: ViewModifier {
-    var size: CGFloat
-    
-    init(size: CGFloat) {
-        self.size = size
-    }
-    
-    func body(content: Content) -> some View {
-        content
-            .font(Font.system(size: size))
-            .foregroundColor(.blue)
-    }
-}
-
 struct ContentView: View {
     var body: some View {
-        Text("")
-            
+        VStack {
+            Spacer()
+            HStack {
+                Image(systemName: "cloud")
+                VStack(alignment: .leading) {
+                    Text("City")
+                        .foregroundColor(Color.gray)
+                    Text("New York")
+                        .font(.title)
+                }
+                Spacer()
+            }
+        }
+        .safeAreaInset(edge: VerticalEdge, content: <#T##() -> View#>)
+        .safeAreaInset(edge: .bottom) {
+            HStack {
+                Spacer()
+                Text("Important")
+                    .padding()
+                Spacer()
+            }.background(.blue)
+        }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().preferredColorScheme(.light)
+        ContentView()
     }
 }

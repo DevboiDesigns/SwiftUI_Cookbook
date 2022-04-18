@@ -330,3 +330,74 @@ VStack(alignment: HorizontalAlignment, spacing: CGFloat?, content: <() -> _>)
 ZStack(alignment: Alignment, content: <() -> _>)
 ```
 
+## Spacer
+
+```swift
+struct ContentView: View {
+    var body: some View {
+        VStack {
+            Text("Up")
+                Spacer() // -- will push views as far apart as possible
+            Text("Down")
+        }
+    }
+}
+```
+
+## Safe Area
+
+* `.container` will dynamically move for keyboard etc.
+
+```swift
+struct ContentView: View {
+    var body: some View {
+        VStack {
+            Spacer()
+            HStack {
+                Image(systemName: "cloud")
+                VStack(alignment: .leading) {
+                    Text("City")
+                        .foregroundColor(Color.gray)
+                    Text("New York")
+                        .font(.title)
+                }
+                Spacer()
+            }
+        }.ignoresSafeArea(.container, edges: .bottom)
+    }
+}
+```
+
+* `.safeAreaInset(edge: VerticalEdge, content: <() -> View>)`
+
+```swift
+struct ContentView: View {
+    var body: some View {
+        VStack {
+            Spacer()
+            HStack {
+                Image(systemName: "cloud")
+                VStack(alignment: .leading) {
+                    Text("City")
+                        .foregroundColor(Color.gray)
+                    Text("New York")
+                        .font(.title)
+                }
+                Spacer()
+            }
+        }
+        .safeAreaInset(edge: .bottom) {
+            HStack {
+                Spacer()
+                Text("Important")
+                    .padding()
+                Spacer()
+            }.background(.blue)
+        }
+    }
+}
+```
+
+
+## Priorities 
+
