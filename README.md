@@ -68,17 +68,18 @@ Text("Hello World")
 
 *recommended to use dynamic fonts not system or custom*
 
-* `.font(Font)` = .body, .header, etc
+* `.font(Font)` = `Font` - .body, .header, etc
 * `.bold()`
 * `.italic()`
-* `.fontWeight(Weight)` = .heavy, etc
+* `.fontWeight(Weight)` = `Weight` - .heavy, etc
 * `.extCase(Case)` = .uppercase, .lowercase 
-* `.dynamicTypeSize(DynamicTypeSize)` = .large, .medium, .small, .xLarge, etc
+* `.dynamicTypeSize(DynamicTypeSize)` = `DynamicTypeSize` - .large, .medium, .small, .xLarge, etc
 * `.underline(Bool, color: Color)`
 * `.strikethrough(Bool, color: Color)`
 * `.shadow(color: Color, radius: CGFloat, x: CGFloat, y: CGFloat)`
 * `.font(.system(size: <CGFloat>, weight: <Font.Weight>, design: <Font.Design>))`
 * `.font(.custom(String, size: CGFloat))` = PostScript name - font book -> show font info -> font -> shown in panel on right 
+* `.zIndex(Double)` = float above/ below
   
 
  *joining text views* 
@@ -95,8 +96,8 @@ Text("Hello \(Text("World").underline())")
 * `.lineLimit(Int?)` = how many lines text can contain
 * `.multilineTextAlignment(TextAlignment)`
 * `.lineSpacing(CGFloat)` = space between lines 
-* `.textSelection(TextSelectability)` = determines if text is selectable, copy & paste = .enabled, .disabled
-* `.truncationMode(Text.TruncationMode)` = .head, .middle, .tail
+* `.textSelection(TextSelectability)` = determines if text is selectable, copy & paste = `TextSelectability` - .enabled, .disabled
+* `.truncationMode(Text.TruncationMode)` = `TruncationMode` - .head, .middle, .tail
 * `.privacySensitive()` = view will hide sensitive information from system 
   
 ### currency converter 
@@ -180,6 +181,20 @@ Image("matrix")
     .shadow(color: .gray, radius: 4, x: 4, y: 0)
 ```
 
+```swift
+Image(systemName: "envelope.fill")
+    .font(.system(size: 100))
+    .symbolVariant(.fill)
+```
+
+*first color for mic, second for badge*
+```swift
+Image(systemName: "mic.badge.plus")
+    .font(.system(size: 100))
+    .symbolRenderingMode(.palette)
+    .foregroundStyle(.red, .blue)
+```
+
 ### Modifiers 
 * `.resizable()`
 * `.clipped()` = clips image to views frame 
@@ -192,6 +207,8 @@ Image("matrix")
 * `.contrast(Double)`
 * `.opacity(Double)`
 * `.scaleEffect(CGSize)`
+* `.symbolVariant(SymbolVariants)` = `SymbolVariants` - animate fill, circle, etc dynamicly 
+* `.symbolRenderingMode(.multicolor)` = multi-color SF Symbols
 
 ### Property Wrappers
 
@@ -211,3 +228,105 @@ struct ContentView: View {
     }
 }
 ```
+
+
+## Label
+
+`Label`
+
+### Initializers
+
+* `Label(StringProtocol, systemImage: String)`
+* `Label(StringProtocol, image: String)`
+
+```swift
+Label("Record", systemImage: "mic.badge.plus")
+    .labelStyle(.titleAndIcon)
+```
+  
+### Modifiers
+* `.labelStyle(LabelStyle)` = `LabelStyle` - .automatic, .iconOnly, .titleAndIcon, .titleOnly
+
+
+## Event Modifiers 
+
+### onAppear(perform: Closure)
+executes closure when view appears 
+
+```swift
+Label("Record", systemImage: "mic.badge.plus")
+    .labelStyle(.titleAndIcon)
+    .onAppear {
+        // Do Something
+}
+ ```
+
+### onDisapper(perform: Closure)
+executes closure when view disappears 
+
+```swift
+Label("Record", systemImage: "mic.badge.plus")
+    .labelStyle(.titleAndIcon)
+    .onDisappear {
+        // Do something
+}
+```
+
+## Custom Modifiers 
+
+```swift
+struct MyModifiers: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(Font.system(size: 13))
+            .foregroundColor(.blue)
+    }
+}
+
+struct ContentView: View {
+    var body: some View {
+        Text("Hello World")
+            .modifier(MyModifiers())
+    }
+}
+```
+
+*dynamic*
+```swift
+struct MyModifiers: ViewModifier {
+    var size: CGFloat
+    
+    init(size: CGFloat) {
+        self.size = size
+    }
+    
+    func body(content: Content) -> some View {
+        content
+            .font(Font.system(size: size))
+            .foregroundColor(.blue)
+    }
+}
+
+struct ContentView: View {
+    var body: some View {
+        Text("Hello World")
+            .modifier(MyModifiers(size: 13))
+    }
+}
+```
+
+## Stacks
+
+* Horizontal - `HStack`
+* Vertical - `VStack`
+* Overlapping - `ZStack`
+
+
+```swift
+VStack(alignment: HorizontalAlignment, spacing: CGFloat?, content: <() -> _>)
+```
+
+```swift
+ZStack(alignment: Alignment, content: <() -> _>)
+```
+

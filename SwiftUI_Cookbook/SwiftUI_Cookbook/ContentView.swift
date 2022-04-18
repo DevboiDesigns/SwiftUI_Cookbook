@@ -7,20 +7,24 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MyModifiers: ViewModifier {
+    var size: CGFloat
     
-    @ScaledMetric var customSize: CGFloat = 100
+    init(size: CGFloat) {
+        self.size = size
+    }
     
-    let number: Float = 30.897897
-    let today: Date = Date() + 100
-    
-    var body: some View {
-       
-       Image("matrix")
-            .resizable()
-            .frame(width: customSize, height: customSize)
+    func body(content: Content) -> some View {
+        content
+            .font(Font.system(size: size))
+            .foregroundColor(.blue)
+    }
+}
 
-        
+struct ContentView: View {
+    var body: some View {
+        Text("")
+            
     }
 }
 
