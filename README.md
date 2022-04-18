@@ -879,7 +879,7 @@ struct HeaderView_Previews: PreviewProvider {
 
 ### @Enviornment
 
-* [Enviorment Properties](##-Enviorment)
+* [Enviorment Properties](##Enviorment)
 
 ```swift
 struct ContentView: View {
