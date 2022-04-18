@@ -640,3 +640,65 @@ processes the view and returns a new one with the characteristics defined by the
 * `.environment(\.calendar, .autoupdatingCurrent)`
 * `.environment(\.locale, .current)`
 * `timeZone`
+
+
+## Property Wrappers 
+
+**Declaritive User Interface**
+
+*like computed properties*
+
+allow us to encapsulate functionality in a property, applicable to multiple properties 
+
+* must include a property with name wrappedValue to process and store value
+* must also include an initializer for wrapped value property 
+
+### Custom Property Wrapper
+
+```swift
+@propertyWrapper
+struct ClampedValue {
+    var storedValue: Int = 0
+    var min: Int = 0
+    var max: Int = 255
+    
+    var wrappedValue: Int {
+        get {
+            return storedValue
+        }
+        set {
+            if newValue < min {
+                storedValue = min
+            } else if newValue > max {
+                storedValue = newValue
+            } else {
+                storedValue = newValue
+            }
+        }
+    }
+    
+    init(wrappedValue: Int) {
+        self.wrappedValue = wrappedValue
+    }
+}
+```
+
+*usage*
+
+```swift
+struct Price {
+    @ClampedValue var firstPrice: Int
+    @ClampedValue var secondPrice: Int
+    
+    func printMessage() {
+        print("First price: \(firstPrice)")
+        print("Second price: \(secondPrice)")
+    }
+}
+
+var purchase = Price(firstPrice: -42, secondPrice: 350)
+purchase.printMessage()
+```
+
+### @State 
+
