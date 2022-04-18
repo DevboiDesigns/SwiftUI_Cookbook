@@ -621,3 +621,22 @@ struct ContentView_Previews: PreviewProvider {
 }
 ```
 
+## Enviorment
+
+*Like an external storage space accesible anywhere in our code*
+Data structure that belongs to application and contains data about app and views.
+
+* `.environment(KeyPath, Value)`
+processes the view and returns a new one with the characteristics defined by the arguments
+
+- First Argument: `KeyPath` = key path to enviorment property we want to modify
+- Second Argument: `Value` = value we want to assign to that property 
+
+* `.environment(\.colorScheme, .dark)`
+* `.environment(\.dynamicTypeSize, .large)`
+* `.environment(\.font, .title)`
+* `accessibilityEnabled`
+* `layoutDirection`
+* `.environment(\.calendar, .autoupdatingCurrent)`
+* `.environment(\.locale, .current)`
+* `timeZone`

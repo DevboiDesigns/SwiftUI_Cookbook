@@ -19,6 +19,7 @@ struct ContentView: View {
         
         if valid {
             EmptyView()
+                
         } else {
             Text("The state is not valid")
         }
@@ -29,7 +30,7 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
 
         ContentView()
-
+            .environment(\.locale, .current)
         
     }
 }
