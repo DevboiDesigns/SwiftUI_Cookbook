@@ -193,7 +193,10 @@ Image("matrix")
 * `.opacity(Double)`
 * `.scaleEffect(CGSize)`
 
-` @ScaledMetric(relativeTo: TextStyle)` = scales a value according to the dynamic font type selected by user from settings in phone. .body, .callout, .caption, etc
+### Property Wrappers
+
+` @ScaledMetric(relativeTo: TextStyle)` 
+* scales a value according to the dynamic font type selected by user from settings in phone. .body, .callout, .caption, etc
 
 ```swift 
 struct ContentView: View {
