@@ -8,27 +8,6 @@
 import SwiftUI
 
 
-struct ContentView: View {
-    
-    @State private var title: String = "Default Title"
-    @State private var titleInput: String = ""
-    
-    var body: some View {
-        VStack {
-            HeaderView(title: $title)
-            TextField("Insert Title", text: $titleInput)
-                .textFieldStyle(.roundedBorder)
-            
-            Button  {
-                title = titleInput
-                titleInput = ""
-            } label: { Text("Change title") }
-            Spacer()
-        }.padding()
-    }
-}
-
-
 struct HeaderView: View {
     
     @Binding var title: String
@@ -38,6 +17,33 @@ struct HeaderView: View {
             .padding(10)
     }
 }
+
+struct ContentView: View {
+    
+    @State private var title: String = "Default Title"
+    @State private var titleInput: String = ""
+    
+    init() {
+        _titleInput = State(initialValue: "Hello World")
+    }
+    
+    var body: some View {
+        VStack {
+            HeaderView(title: _title.projectedValue)
+            TextField("Insert Title", text: _titleInput.projectedValue)
+                .textFieldStyle(.roundedBorder)
+            
+            Button  {
+                _title.wrappedValue = _titleInput.wrappedValue
+                _titleInput.wrappedValue = ""
+            } label: { Text("Change title") }
+            Spacer()
+        }.padding()
+    }
+}
+
+
+
 
 
 

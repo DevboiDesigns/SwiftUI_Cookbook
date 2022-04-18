@@ -738,6 +738,16 @@ struct ContentView: View {
 used to create a bidirectional connection between the @State properties defined in one view and the code in the other
 
 ```swift
+struct HeaderView: View {
+    
+    @Binding var title: String
+    
+    var body: some View {
+        Text(title)
+            .padding(10)
+    }
+}
+
 struct ContentView: View {
     
     @State private var title: String = "Default Title"
@@ -757,15 +767,72 @@ struct ContentView: View {
         }.padding()
     }
 }
+```
 
+#### Binding Structures 
 
-struct HeaderView: View {
+The structure that defines the `@State` property wrapper is called State. This is a generic structure and therefore it can process values of any type.
+
+* `wrappedValue` - this property returns the value managed by the `@State` property
+* `projectedValue` - this property returns a structure of type `@Binding` that creates the bidirectional binding with the view
+
+*not neccesary*
+
+```swift
+struct ContentView: View {
     
-    @Binding var title: String
+    @State private var title: String = "Default Title"
+    @State private var titleInput: String = ""
     
     var body: some View {
-        Text(title)
-            .padding(10)
+        VStack {
+            HeaderView(title: _title.projectedValue)
+            TextField("Insert Title", text: _titleInput.projectedValue)
+                .textFieldStyle(.roundedBorder)
+            
+            Button  {
+                _title.wrappedValue = _titleInput.wrappedValue
+                _titleInput.wrappedValue = ""
+            } label: { Text("Change title") }
+            Spacer()
+        }.padding()
+    }
+}
+```
+
+**SwiftUI doesnt allow us to access and work with `@State` properties outside the closure assigned to the body property, but we can replace one State structure by another**
+
+##### Initializers
+
+* `State(initialValue: Value)`
+* `State(wrappedValue: Value)`
+
+initialize @State properties
+
+*only recommended when there are no other options, if possible use `onAppear()` or by storing in an observable object*
+
+```swift 
+struct ContentView: View {
+    
+    @State private var title: String = "Default Title"
+    @State private var titleInput: String = ""
+    
+    init() {
+        _titleInput = State(initialValue: "Hello World")
+    }
+    
+    var body: some View {
+        VStack {
+            HeaderView(title: _title.projectedValue)
+            TextField("Insert Title", text: _titleInput.projectedValue)
+                .textFieldStyle(.roundedBorder)
+            
+            Button  {
+                _title.wrappedValue = _titleInput.wrappedValue
+                _titleInput.wrappedValue = ""
+            } label: { Text("Change title") }
+            Spacer()
+        }.padding()
     }
 }
 ```
