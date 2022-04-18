@@ -4,12 +4,12 @@
 * Swift vers: `5`
 * *work in progress*
  
-## WindowGroup(content: Closure)
+# WindowGroup(content: Closure)
 This initializer creates a scene to manage all the windows of an instance of the application. The content argument is a closure with the code that defines what the windows are going to display. If only returning one view, do not need return.
 
 `Window -> Root View -> Views = (Text, Image, Button)`
 
-## Opaque Types
+# Opaque Types
 * `some View` 
 * type: `generic`
 data types that hide the values data type from the programmer
@@ -22,16 +22,16 @@ func reverseIt(mylist: [String]) -> some Collection {
 }
 ```
 
-## App icon 
+# App icon 
 
 * set [here](SwiftUI_Cookbook/SwiftUI_Cookbook/Assets.xcassets/AppIcon.appiconset) 
 * [App icon Generator](https://appicon.co/#app-icon)
 
-## Views 
+# Views 
 
 `View`
 
-#### Modifiers 
+### Modifiers 
 
 extends view to edges of screen 
 ```swift
@@ -61,11 +61,11 @@ Text("Hello World")
 ```
 
 
-### Text
+## Text
 
  `Text`
 
-#### Initializers 
+### Initializers 
 
 * `Text(string: )`
 * `Text(Date, style: DateStyle)` - present a date. Style argument is a struct that determines the format. Type properties include `date`, `offset`, `relative`, `time`, and `timer` to define this value.
@@ -96,7 +96,7 @@ Text("Hello \(Text("World").underline())")
 .font(.largeTitle.weight(.semibold))
 ```
 
-##### formatting 
+#### formatting 
 * `.lineLimit(Int?)` = how many lines text can contain
 * `.multilineTextAlignment(TextAlignment)`
 * `.lineSpacing(CGFloat)` = space between lines 
@@ -104,27 +104,27 @@ Text("Hello \(Text("World").underline())")
 * `.truncationMode(Text.TruncationMode)` = `TruncationMode` - .head, .middle, .tail
 * `.privacySensitive()` = view will hide sensitive information from system 
   
-#### currency converter 
+### currency converter 
 ```swift 
 Text("My number: \(number.formatted(.currency(code: "USD")))")
 ```
 
-#### date converter
+### date converter
 ```swift
 Text(today.formatted(date: .abbreviated, time: .omitted))
 ```
 
-#### timer 
+### timer 
 ```swift
 Text(today, style: .timer)
 ```
 
 
-### Color 
+## Color 
 
  `Color`
 
- #### Initializers 
+ ### Initializers 
 
 * `RGBColorSpace` = .sRGB, .sRGBLinear, .displayP3
 * `Color(Color.RGBColorSpace, red: Double, green: Double, blue: Double, opacity: Double)` 
@@ -158,13 +158,13 @@ struct ContentView_Previews: PreviewProvider {
 .overlay(alignment: Alignment, content: <() -> View>)
 ```
 
-### Images 
+## Images 
 
 `Image`
 
 *all imported images need 3 sizes* [Image sets Generator](https://appicon.co/#image-sets)
 
-#### Initializers
+### Initializers
 
 * `Image(String)`
 * `Image(systemName: String)`
@@ -199,7 +199,7 @@ Image(systemName: "mic.badge.plus")
     .foregroundStyle(.red, .blue)
 ```
 
-#### Modifiers 
+### Modifiers 
 * `.resizable()`
 * `.clipped()` = clips image to views frame 
 * `.aspectRatio(contentMode: ContentMode)`
@@ -214,7 +214,7 @@ Image(systemName: "mic.badge.plus")
 * `.symbolVariant(SymbolVariants)` = `SymbolVariants` - animate fill, circle, etc dynamicly 
 * `.symbolRenderingMode(.multicolor)` = multi-color SF Symbols
 
-#### Property Wrappers
+### Property Wrappers
 
 ` @ScaledMetric(relativeTo: TextStyle)` 
 * scales a value according to the dynamic font type selected by user from settings in phone. .body, .callout, .caption, etc
@@ -234,11 +234,11 @@ struct ContentView: View {
 ```
 
 
-### Label
+## Label
 
 `Label`
 
-#### Initializers
+### Initializers
 
 * `Label(StringProtocol, systemImage: String)`
 * `Label(StringProtocol, image: String)`
@@ -248,13 +248,13 @@ Label("Record", systemImage: "mic.badge.plus")
     .labelStyle(.titleAndIcon)
 ```
   
-#### Modifiers
+### Modifiers
 * `.labelStyle(LabelStyle)` = `LabelStyle` - .automatic, .iconOnly, .titleAndIcon, .titleOnly
 
 
-## Event Modifiers 
+# Event Modifiers 
 
-### onAppear(perform: Closure)
+## onAppear(perform: Closure)
 executes closure when view appears 
 
 ```swift
@@ -265,7 +265,7 @@ Label("Record", systemImage: "mic.badge.plus")
 }
  ```
 
-### onDisapper(perform: Closure)
+## onDisapper(perform: Closure)
 executes closure when view disappears 
 
 ```swift
@@ -276,7 +276,7 @@ Label("Record", systemImage: "mic.badge.plus")
 }
 ```
 
-## Custom Modifiers 
+# Custom Modifiers 
 
 ```swift
 struct MyModifiers: ViewModifier {
@@ -319,7 +319,7 @@ struct ContentView: View {
 }
 ```
 
-## Stacks
+# Stacks
 
 *maximum 10 views - contained in tuple*
 
@@ -336,7 +336,7 @@ VStack(alignment: HorizontalAlignment, spacing: CGFloat?, content: <() -> _>)
 ZStack(alignment: Alignment, content: <() -> _>)
 ```
 
-## Spacer
+# Spacer
 
 ```swift
 struct ContentView: View {
@@ -350,7 +350,7 @@ struct ContentView: View {
 }
 ```
 
-## Safe Area
+# Safe Area
 
 * `.container` will dynamically move for keyboard etc.
 
@@ -407,7 +407,7 @@ struct ContentView: View {
 ```
 
 
-## Priorities 
+# Priorities 
 
 * `.layoutPriority(Double)`
   sets views priority, higher value determines that view will get as much space as possible default = `0`
@@ -436,9 +436,9 @@ struct ContentView: View {
 }
 ```
 
-## Alignment
+# Alignment
 
-### alignmentGuide
+## alignmentGuide
 
 `.alignmentGuide(_, computeValue: Closure)`
 
@@ -460,7 +460,7 @@ struct ContentView: View {
 }
 ```
 
-### custom alignment
+## custom alignment
 
 *extension*
 
@@ -500,7 +500,7 @@ struct ContentView: View {
 }
 ```
 
-## Group Views
+# Group Views
 
 `Group(content: Closure)`
 
@@ -524,7 +524,7 @@ struct ContentView: View {
 }
 ```
 
-## Generic Views
+# Generic Views
 
 custom generic views
 
@@ -589,7 +589,7 @@ will not affect interface - placeholder view for dynamic view selection
     }
 ```
 
-## Preview Modifiers
+# Preview Modifiers
 
 * `xcrun simctl list devicetypes` in terminal to see a list of all devices 
 
@@ -623,7 +623,7 @@ struct ContentView_Previews: PreviewProvider {
 }
 ```
 
-## Enviorment
+# Enviorment
 
 *Like an external storage space accesible anywhere in our code*
 Data structure that belongs to application and contains data about app and views.
@@ -644,7 +644,7 @@ processes the view and returns a new one with the characteristics defined by the
 * `timeZone`
 
 
-## Property Wrappers 
+# Property Wrappers 
 
 **Declaritive User Interface**
 
@@ -655,7 +655,7 @@ allow us to encapsulate functionality in a property, applicable to multiple prop
 * must include a property with name wrappedValue to process and store value
 * must also include an initializer for wrapped value property 
 
-### Custom Property Wrapper
+## Custom Property Wrapper
 
 ```swift
 @propertyWrapper
@@ -702,7 +702,7 @@ var purchase = Price(firstPrice: -42, secondPrice: 350)
 purchase.printMessage()
 ```
 
-### @State 
+## @State 
 
 `@State`
 
@@ -733,7 +733,7 @@ struct ContentView: View {
 }
 ```
 
-### @Binding
+## @Binding
 
 `@Binding`
 
@@ -771,7 +771,7 @@ struct ContentView: View {
 }
 ```
 
-#### Binding Structures 
+### Binding Structures 
 
 The structure that defines the `@State` property wrapper is called State. This is a generic structure and therefore it can process values of any type.
 
@@ -804,7 +804,7 @@ struct ContentView: View {
 
 **SwiftUI doesnt allow us to access and work with `@State` properties outside the closure assigned to the body property, but we can replace one State structure by another**
 
-##### Initializers
+#### Initializers
 
 * `State(initialValue: Value)`
 * `State(wrappedValue: Value)`
@@ -877,9 +877,9 @@ struct HeaderView_Previews: PreviewProvider {
 }
 ```
 
-### @Enviornment
+## @Enviornment
 
-* [Enviorment Properties](##Enviorment)
+* [Enviorment Properties](#Enviorment)
 
 ```swift
 struct ContentView: View {
