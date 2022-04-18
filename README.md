@@ -597,6 +597,7 @@ will not affect interface - placeholder view for dynamic view selection
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .preferredColorScheme(.dark)
             .previewDevice("iPhone 13")
             .previewDisplayName("Test Name")
             .previewLayout(.sizeThatFits)
@@ -872,6 +873,24 @@ struct HeaderView_Previews: PreviewProvider {
             }
         )
         return HeaderView(title: constantValue)
+    }
+}
+```
+
+### @Enviornment
+
+* [Enviorment Properties](##-Enviorment)
+
+```swift
+struct ContentView: View {
+
+    @Environment(\.colorScheme) var mode
+    
+    var body: some View {
+       Image(systemName: "trash")
+            .font(Font.system(size: 100))
+            .foregroundColor(mode == .dark ? Color.yellow : Color.blue)
+            .symbolVariant(mode == .dark ? .fill : .circle)
     }
 }
 ```
