@@ -588,5 +588,36 @@ will not affect interface - placeholder view for dynamic view selection
     }
 ```
 
-## Custom Views
+## Preview Modifiers
+
+* `xcrun simctl list devicetypes` in terminal to see a list of all devices 
+
+```swift
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+            .previewDevice("iPhone 13")
+            .previewDisplayName("Test Name")
+            .previewLayout(.sizeThatFits)
+            .previewInterfaceOrientation(.portraitUpsideDown)
+    }
+}
+```
+
+*multiple simulators at once*
+
+```swift
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            ContentView()
+                .previewDevice("iPhone 13")
+                .previewDisplayName("Phone 13")
+            ContentView()
+                .previewDevice("iPhone 8")
+                .previewDisplayName("Phone 8")
+        }
+    }
+}
+```
 

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-       getView()
+        getView()
     }
     
     @ViewBuilder
@@ -20,13 +20,16 @@ struct ContentView: View {
         if valid {
             EmptyView()
         } else {
-           Text("The state is not valid")
+            Text("The state is not valid")
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
+
         ContentView()
+
+        
     }
 }
