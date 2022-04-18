@@ -8,9 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    let number: Float = 30.897897
+    let today: Date = Date() + 100
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        Text("Hello World")
+            .textSelection(TextSelectability)
+           
+        
     }
 }
 
