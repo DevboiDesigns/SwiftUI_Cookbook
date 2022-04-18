@@ -10,14 +10,17 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        let valid = true
+       getView()
+    }
+    
+    @ViewBuilder
+    func getView() -> some View {
+        let valid = false
         
-        return Group {
-            if valid {
-                Image(systemName: "keyboard")
-            } else {
-                Text("The state is not valid")
-            }
+        if valid {
+            EmptyView()
+        } else {
+           Text("The state is not valid")
         }
     }
 }

@@ -522,3 +522,71 @@ struct ContentView: View {
     }
 }
 ```
+
+## Generic Views
+
+custom generic views
+
+* `AnyView(View)`
+
+```swift
+struct ContentView: View {
+    var body: some View {
+       getView()
+    }
+    
+    func getView() -> AnyView {
+        let valid = true
+        var myView: AnyView!
+        
+        if valid {
+            myView = AnyView(Image(systemName: "keyboard"))
+        } else {
+            myView = AnyView(Text("The state is not valid"))
+        }
+        return myView
+    }
+}
+```
+
+* `@ViewBuilder` - property wrapper
+  
+*better approach*
+
+```swift
+struct ContentView: View {
+    var body: some View {
+       getView()
+    }
+    
+    @ViewBuilder
+    func getView() -> some View {
+        let valid = false
+        
+        if valid {
+            Image(systemName: "keyboard")
+        } else {
+           Text("The state is not valid")
+        }
+    }
+}
+```
+* `EmptyView()`
+  
+will not affect interface - placeholder view for dynamic view selection 
+
+```swift
+@ViewBuilder
+    func getView() -> some View {
+        let valid = false
+        
+        if valid {
+            EmptyView()
+        } else {
+           Text("The state is not valid")
+        }
+    }
+```
+
+## Custom Views
+
