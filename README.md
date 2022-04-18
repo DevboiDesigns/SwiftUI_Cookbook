@@ -1,4 +1,4 @@
-# SwiftUI_Cookbook
+# SwiftUI Cookbook
 * complete overview of the `SwiftUI` framework
 * Xcode vers: `13`
 * Swift vers: `5`
