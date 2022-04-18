@@ -9,27 +9,16 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Spacer()
-            HStack {
-                Image(systemName: "cloud")
-                VStack(alignment: .leading) {
-                    Text("City")
-                        .foregroundColor(Color.gray)
-                    Text("New York")
-                        .font(.title)
-                }
-                Spacer()
-            }
-        }
-        .safeAreaInset(edge: VerticalEdge, content: <#T##() -> View#>)
-        .safeAreaInset(edge: .bottom) {
-            HStack {
-                Spacer()
-                Text("Important")
-                    .padding()
-                Spacer()
-            }.background(.blue)
+        HStack {
+            Text("Manchester")
+                .font(.title)
+                .lineLimit(1)
+            Image(systemName: "cloud")
+                .font(.system(size: 80))
+            Text("New Yorker")
+                .font(.title)
+                .lineLimit(1)
+                //.layoutPriority(1)
         }
     }
 }

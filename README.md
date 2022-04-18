@@ -1,4 +1,7 @@
 # SwiftUI_Cookbook
+* complete overview of the `SwiftUI` framework
+* Xcode vers: `13`
+* Swift vers: `5`
  
 ## WindowGroup(content: Closure)
 This initializer creates a scene to manage all the windows of an instance of the application. The content argument is a closure with the code that defines what the windows are going to display. If only returning one view, do not need return.
@@ -370,6 +373,8 @@ struct ContentView: View {
 
 * `.safeAreaInset(edge: VerticalEdge, content: <() -> View>)`
 
+will inject a view in the area defined 
+
 ```swift
 struct ContentView: View {
     var body: some View {
@@ -400,4 +405,13 @@ struct ContentView: View {
 
 
 ## Priorities 
+
+* `.layoutPriority(Double)`
+  sets views priority, higher value determines that view will get as much space as possible default = `0`
+
+* `.fixedSize(horizontal: Bool, vertical: Bool)`
+  fixes the view to its ideal horizontal or vertical size, if no parameters it is fixed on both
+
+
+
 
