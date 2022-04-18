@@ -9,68 +9,46 @@ import SwiftUI
 
 
 struct ContentView: View {
-    var body: some View {
-        getView()
-    }
     
-    @ViewBuilder
-    func getView() -> some View {
-        let valid = false
-        
-        if valid {
-            EmptyView()
+    @State private var title: String = "Default Title"
+    @State private var titleInput: String = ""
+    
+    var body: some View {
+        VStack {
+            HeaderView(title: $title)
+            TextField("Insert Title", text: $titleInput)
+                .textFieldStyle(.roundedBorder)
             
-        } else {
-            Text("The state is not valid")
-        }
+            Button  {
+                title = titleInput
+                titleInput = ""
+            } label: { Text("Change title") }
+            Spacer()
+        }.padding()
     }
 }
+
+
+struct HeaderView: View {
+    
+    @Binding var title: String
+    
+    var body: some View {
+        Text(title)
+            .padding(10)
+    }
+}
+
+
+
+
+
+
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        
         ContentView()
-            .environment(\.locale, .current)
-        
     }
 }
 
-
-@propertyWrapper
-struct ClampedValue {
-    var storedValue: Int = 0
-    var min: Int = 0
-    var max: Int = 255
-    
-    var wrappedValue: Int {
-        get {
-            return storedValue
-        }
-        set {
-            if newValue < min {
-                storedValue = min
-            } else if newValue > max {
-                storedValue = newValue
-            } else {
-                storedValue = newValue
-            }
-        }
-    }
-    
-    init(wrappedValue: Int) {
-        self.wrappedValue = wrappedValue
-    }
-}
-
-struct Price {
-    @ClampedValue var firstPrice: Int
-    @ClampedValue var secondPrice: Int
-    
-    func printMessage() {
-        print("First price: \(firstPrice)")
-        print("Second price: \(secondPrice)")
-    }
-}
-
-var purchase = Price(firstPrice: -42, secondPrice: 350)
-purchase.printMessage()

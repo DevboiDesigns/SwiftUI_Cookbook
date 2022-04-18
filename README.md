@@ -702,3 +702,70 @@ purchase.printMessage()
 
 ### @State 
 
+`@State`
+
+designed to store the states of a single view 
+
+* declare as `private`
+* unidirectional - property modified, view updated
+* bidirectional - values modified by the user `$` = prefix name of property 
+
+
+```swift
+struct ContentView: View {
+    
+    @State private var title: String = "Default Title"
+    
+    var body: some View {
+        VStack {
+            Text(title)
+                .padding(10)
+            Button  {
+                title = "My new title"
+            } label: {
+                Text("Change title")
+            }
+            Spacer()
+        }.padding()
+    }
+}
+```
+
+### @Binding
+
+`@Binding`
+
+used to create a bidirectional connection between the @State properties defined in one view and the code in the other
+
+```swift
+struct ContentView: View {
+    
+    @State private var title: String = "Default Title"
+    @State private var titleInput: String = ""
+    
+    var body: some View {
+        VStack {
+            HeaderView(title: $title)
+            TextField("Insert Title", text: $titleInput)
+                .textFieldStyle(.roundedBorder)
+            
+            Button  {
+                title = titleInput
+                titleInput = ""
+            } label: { Text("Change title") }
+            Spacer()
+        }.padding()
+    }
+}
+
+
+struct HeaderView: View {
+    
+    @Binding var title: String
+    
+    var body: some View {
+        Text(title)
+            .padding(10)
+    }
+}
+```
