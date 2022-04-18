@@ -9,14 +9,17 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @ScaledMetric var customSize: CGFloat = 100
+    
     let number: Float = 30.897897
     let today: Date = Date() + 100
     
     var body: some View {
        
-       Text("Hello World")
-            .background(.red)
-            .foregroundStyle(.thickMaterial)
+       Image("matrix")
+            .resizable()
+            .frame(width: customSize, height: customSize)
+
         
     }
 }

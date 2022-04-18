@@ -161,3 +161,50 @@ struct ContentView_Previews: PreviewProvider {
 
 ### Initializers
 
+* `Image(String)`
+* `Image(systemName: String)`
+
+```swift
+Image("matrix")
+    .resizable()
+    .scaledToFit()
+    .frame(width: 250, height: 100, alignment: .center)
+```
+
+```swift
+Image("matrix")
+    .resizable()
+    .scaledToFit()
+    .cornerRadius(22)
+    .padding(20)
+    .shadow(color: .gray, radius: 4, x: 4, y: 0)
+```
+
+### Modifiers 
+* `.resizable()`
+* `.clipped()` = clips image to views frame 
+* `.aspectRatio(contentMode: ContentMode)`
+* `.scaledToFit()`
+* `.scaledToFill()`
+* `.blur(radius: CGFloat, opaque: Bool)`
+* `.colorMultiply(Color)`
+* `.saturation(Double)`
+* `.contrast(Double)`
+* `.opacity(Double)`
+* `.scaleEffect(CGSize)`
+
+` @ScaledMetric(relativeTo: TextStyle)` = scales a value according to the dynamic font type selected by user from settings in phone. .body, .callout, .caption, etc
+
+```swift 
+struct ContentView: View {
+    
+    @ScaledMetric var customSize: CGFloat = 100
+ 
+    var body: some View {
+       
+       Image("matrix")
+            .resizable()
+            .frame(width: customSize, height: customSize)
+    }
+}
+```
