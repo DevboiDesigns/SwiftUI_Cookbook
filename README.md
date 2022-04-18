@@ -26,11 +26,11 @@ func reverseIt(mylist: [String]) -> some Collection {
 * set [here](SwiftUI_Cookbook/SwiftUI_Cookbook/Assets.xcassets/AppIcon.appiconset) 
 * [App icon Generator](https://appicon.co/#app-icon)
 
-## View 
+## Views 
 
 `View`
 
-### Modifiers 
+#### Modifiers 
 
 extends view to edges of screen 
 ```swift
@@ -60,11 +60,11 @@ Text("Hello World")
 ```
 
 
-## Text
+### Text
 
  `Text`
 
-### Initializers 
+#### Initializers 
 
 * `Text(string: )`
 * `Text(Date, style: DateStyle)` - present a date. Style argument is a struct that determines the format. Type properties include `date`, `offset`, `relative`, `time`, and `timer` to define this value.
@@ -95,7 +95,7 @@ Text("Hello \(Text("World").underline())")
 .font(.largeTitle.weight(.semibold))
 ```
 
-#### formatting 
+##### formatting 
 * `.lineLimit(Int?)` = how many lines text can contain
 * `.multilineTextAlignment(TextAlignment)`
 * `.lineSpacing(CGFloat)` = space between lines 
@@ -103,27 +103,27 @@ Text("Hello \(Text("World").underline())")
 * `.truncationMode(Text.TruncationMode)` = `TruncationMode` - .head, .middle, .tail
 * `.privacySensitive()` = view will hide sensitive information from system 
   
-### currency converter 
+#### currency converter 
 ```swift 
 Text("My number: \(number.formatted(.currency(code: "USD")))")
 ```
 
-### date converter
+#### date converter
 ```swift
 Text(today.formatted(date: .abbreviated, time: .omitted))
 ```
 
-### timer 
+#### timer 
 ```swift
 Text(today, style: .timer)
 ```
 
 
-## Color 
+### Color 
 
  `Color`
 
- ### Initializers 
+ #### Initializers 
 
 * `RGBColorSpace` = .sRGB, .sRGBLinear, .displayP3
 * `Color(Color.RGBColorSpace, red: Double, green: Double, blue: Double, opacity: Double)` 
@@ -157,13 +157,13 @@ struct ContentView_Previews: PreviewProvider {
 .overlay(alignment: Alignment, content: <() -> View>)
 ```
 
-## Images 
+### Images 
 
 `Image`
 
 *all imported images need 3 sizes* [Image sets Generator](https://appicon.co/#image-sets)
 
-### Initializers
+#### Initializers
 
 * `Image(String)`
 * `Image(systemName: String)`
@@ -198,7 +198,7 @@ Image(systemName: "mic.badge.plus")
     .foregroundStyle(.red, .blue)
 ```
 
-### Modifiers 
+#### Modifiers 
 * `.resizable()`
 * `.clipped()` = clips image to views frame 
 * `.aspectRatio(contentMode: ContentMode)`
@@ -213,7 +213,7 @@ Image(systemName: "mic.badge.plus")
 * `.symbolVariant(SymbolVariants)` = `SymbolVariants` - animate fill, circle, etc dynamicly 
 * `.symbolRenderingMode(.multicolor)` = multi-color SF Symbols
 
-### Property Wrappers
+#### Property Wrappers
 
 ` @ScaledMetric(relativeTo: TextStyle)` 
 * scales a value according to the dynamic font type selected by user from settings in phone. .body, .callout, .caption, etc
@@ -233,11 +233,11 @@ struct ContentView: View {
 ```
 
 
-## Label
+### Label
 
 `Label`
 
-### Initializers
+#### Initializers
 
 * `Label(StringProtocol, systemImage: String)`
 * `Label(StringProtocol, image: String)`
@@ -247,7 +247,7 @@ Label("Record", systemImage: "mic.badge.plus")
     .labelStyle(.titleAndIcon)
 ```
   
-### Modifiers
+#### Modifiers
 * `.labelStyle(LabelStyle)` = `LabelStyle` - .automatic, .iconOnly, .titleAndIcon, .titleOnly
 
 
