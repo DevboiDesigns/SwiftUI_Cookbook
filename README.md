@@ -320,6 +320,8 @@ struct ContentView: View {
 
 ## Stacks
 
+*maximum 10 views - contained in tuple*
+
 * Horizontal - `HStack`
 * Vertical - `VStack`
 * Overlapping - `ZStack`
@@ -412,6 +414,111 @@ struct ContentView: View {
 * `.fixedSize(horizontal: Bool, vertical: Bool)`
   fixes the view to its ideal horizontal or vertical size, if no parameters it is fixed on both
 
+* `.fixedSize()`
 
+```swift
+struct ContentView: View {
+    var body: some View {
+        HStack {
+            Text("Manchester")
+                .font(.title)
+                .lineLimit(1)
+                .fixedSize()
+            Image(systemName: "cloud")
+                .font(.system(size: 80))
+            Text("New Yorker")
+                .font(.title)
+                .lineLimit(1)
+                .layoutPriority(1)
+        }
+    }
+}
+```
 
+## Alignment
 
+### alignmentGuide
+
+`.alignmentGuide(_, computeValue: Closure)`
+
+```swift
+struct ContentView: View {
+    var body: some View {
+        HStack {
+            Image(systemName: "person")
+                .alignmentGuide(VerticalAlignment.center) { dim in
+                    return dim[VerticalAlignment.center] + 45 // offset from defined alignment
+                }
+            Image("matrix")
+                .resizable()
+                .scaledToFit()
+            Image(systemName: "person")
+        }
+        .border(.blue, width: 2)
+    }
+}
+```
+
+### custom alignment
+
+*extension*
+
+```swift
+extension VerticalAlignment {
+    enum BusAlignment: AlignmentID {
+        static func defaultValue(in context: ViewDimensions) -> CGFloat {
+            return context[VerticalAlignment.center]
+        }
+    }
+}
+
+```
+
+*usage*
+
+```swift
+struct ContentView: View {
+    var body: some View {
+        HStack(alignment: .alignImage) {
+            Image(systemName: "person")
+                .alignmentGuide(.alignImage) { dim in dim[VerticalAlignment.center] - 40 }
+            VStack {
+                Image("matrix")
+                    .resizable()
+                    .scaledToFit()
+            }
+            Image("matrix")
+                .resizable()
+                .scaledToFit()
+            
+            Image(systemName: "person")
+                .alignmentGuide(.alignImage) { dim in dim[VerticalAlignment.center] - 40 }
+        }
+        .border(.blue, width: 2)
+    }
+}
+```
+
+## Group Views
+
+`Group(content: Closure)`
+
+group views together 
+
+*insert if/ else conditional logic in group views*
+
+```swift
+struct ContentView: View {
+    var body: some View {
+        let valid = true
+        
+        return Group {
+            if valid {
+                Image(systemName: "keyboard")
+            } else {
+                Text("The state is not valid")
+            }
+        }
+    }
+}
+```
