@@ -18,8 +18,8 @@ func reverseIt(mylist: [String]) -> some Collection {
 }
 ```
 
-## Modifiers
-* `View`
+## View
+### `View`
 
 extends view to edges of screen 
 ```swift
@@ -36,7 +36,9 @@ padding
 .padding([.top, .bottom], 50)
 ```
 
+
 ## Text
+### `Text`
 
 * `Text(string: )`
 * `Text(Date, style: DateStyle)` - present a date. Style argument is a struct that determines the format. Type properties include `date`, `offset`, `relative`, `time`, and `timer` to define this value.
@@ -91,6 +93,7 @@ Text(today, style: .timer)
 
 
 ## Color 
+### `Color`
 
 * `RGBColorSpace` = .sRGB, .sRGBLinear, .displayP3
 * `Color(Color.RGBColorSpace, red: Double, green: Double, blue: Double, opacity: Double)` 
@@ -100,6 +103,7 @@ Text(today, style: .timer)
 * `Color(Color.primary)` = dynamic light dark, can be predefined 
 * `Color(Color.secondary)` = dynamic light dark, can be predefined 
 
+set AccentColor for global use in [Assets.xcassets](SwiftUI_Cookbook/SwiftUI_Cookbook/Assets.xcassets) 
 
 *view previews with dark mode*
 
@@ -111,4 +115,15 @@ struct ContentView_Previews: PreviewProvider {
 }
 ```
 
-set AccentColor for global use in [Assets.xcassets](SwiftUI_Cookbook/SwiftUI_Cookbook/Assets.xcassets) 
+```swift
+.border(Color, width: CGFloat)
+```
+
+```swift
+.background(alignment: Alignment, content: <() -> View>)
+```
+
+```swift
+.overlay(alignment: Alignment, content: <() -> View>)
+```
+

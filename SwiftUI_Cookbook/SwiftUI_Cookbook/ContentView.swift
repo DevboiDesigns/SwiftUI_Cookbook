@@ -13,14 +13,15 @@ struct ContentView: View {
     let today: Date = Date() + 100
     
     var body: some View {
-        Color(Color.secondary)
-           
+       
+       Text("Hello World")
+            .background(alignment: Alignment, content: <#T##() -> View#>)
         
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().preferredColorScheme(.dark)
+        ContentView().preferredColorScheme(.light)
     }
 }
